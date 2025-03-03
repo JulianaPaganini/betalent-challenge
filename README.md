@@ -1,50 +1,9 @@
-# React + TypeScript + Vite
+Neste projeto, criei uma API simulada utilizando a ferramenta json-server para atuar como o back-end e fornecer os dados dos funcionários consumidos pela página de visualização. O objetivo foi criar um ambiente simples e rápido para testar a integração entre o front-end e a API, sem a necessidade de um back-end real.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Primeiro, instalei o json-server como dependência de desenvolvimento. Com ele, foi possível gerar um servidor RESTful completo a partir de um arquivo JSON. Criei o arquivo db.json, no qual armazenei os dados fictícios dos funcionários, como nome, cargo, data de admissão, telefone e imagem. Esse arquivo passou a ser a base de dados da API.
 
-Currently, two official plugins are available:
+Em seguida, configurei o servidor do json-server para rodar na porta 3001, expondo os dados através de endpoints como GET /employees, que retorna todos os funcionários, e GET /employees/:id, que busca um funcionário específico. Além disso, configurei os métodos POST, PUT e DELETE para permitir a manipulação de dados, caso seja necessário adicionar, atualizar ou excluir informações.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A integração com o front-end foi feita utilizando a biblioteca axios no React. Quando o componente da tabela é carregado, ele faz uma requisição GET para obter os dados da API e exibi-los. Também implementei um filtro de pesquisa para que o usuário possa procurar rapidamente entre os funcionários, utilizando os campos de nome e cargo.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Essa abordagem me permitiu testar a visualização e interação com os dados de forma ágil, sem a necessidade de um back-end completo, facilitando o desenvolvimento e permitindo validar a interface e a integração com a API.
